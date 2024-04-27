@@ -90,8 +90,6 @@ func (p *Play) Move(k string) error {
 	default:
 		return fmt.Errorf("Invalid key. Play again.")
 	}
-
-	return nil
 }
 
 func (p *Play) up() error {
