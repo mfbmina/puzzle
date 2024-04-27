@@ -25,6 +25,10 @@ func main() {
 
 		w = p.IsWin()
 	}
+
+	if w {
+		fmt.Println("You win!")
+	}
 }
 
 func readPlay() string {

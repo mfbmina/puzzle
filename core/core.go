@@ -78,13 +78,13 @@ func (p *Play) Quit() string {
 func (p *Play) Move(k string) error {
 	switch k {
 	case p.Keys["up"]:
-		// return p.up()
+		return p.up()
 	case p.Keys["left"]:
-		// return p.left()
+		return p.left()
 	case p.Keys["down"]:
-		// return p.down()
+		return p.down()
 	case p.Keys["right"]:
-		// return p.right()
+		return p.right()
 	case p.Keys["quit"]:
 		return nil
 	default:
@@ -94,12 +94,46 @@ func (p *Play) Move(k string) error {
 	return nil
 }
 
-// func (p *Play) up() error {
-// 	if p.EmptyRow == 0 {
-// 		return t, fmt.Errorf("can't move up")
-// 	}
+func (p *Play) up() error {
+	if p.EmptyRow == 0 {
+		return fmt.Errorf("can't move up")
+	}
 
-// 	t[xEmpty][yEmpty], t[xEmpty-1][yEmpty] = t[xEmpty-1][yEmpty], t[xEmpty][yEmpty]
-// 	xEmpty--
-// 	return nil
-// }
+	p.Table[p.EmptyRow][p.EmptyCol], p.Table[p.EmptyRow-1][p.EmptyCol] = p.Table[p.EmptyRow-1][p.EmptyCol], p.Table[p.EmptyRow][p.EmptyCol]
+	p.EmptyRow = p.EmptyRow - 1
+
+	return nil
+}
+
+func (p *Play) down() error {
+	if p.EmptyRow == 2 {
+		return fmt.Errorf("can't move down")
+	}
+
+	p.Table[p.EmptyRow][p.EmptyCol], p.Table[p.EmptyRow+1][p.EmptyCol] = p.Table[p.EmptyRow+1][p.EmptyCol], p.Table[p.EmptyRow][p.EmptyCol]
+	p.EmptyRow = p.EmptyRow + 1
+
+	return nil
+}
+
+func (p *Play) left() error {
+	if p.EmptyCol == 0 {
+		return fmt.Errorf("can't move left")
+	}
+
+	p.Table[p.EmptyRow][p.EmptyCol], p.Table[p.EmptyRow][p.EmptyCol-1] = p.Table[p.EmptyRow][p.EmptyCol-1], p.Table[p.EmptyRow][p.EmptyCol]
+	p.EmptyCol = p.EmptyCol - 1
+
+	return nil
+}
+
+func (p *Play) right() error {
+	if p.EmptyCol == 2 {
+		return fmt.Errorf("can't move right")
+	}
+
+	p.Table[p.EmptyRow][p.EmptyCol], p.Table[p.EmptyRow][p.EmptyCol+1] = p.Table[p.EmptyRow][p.EmptyCol+1], p.Table[p.EmptyRow][p.EmptyCol]
+	p.EmptyCol = p.EmptyCol + 1
+
+	return nil
+}
