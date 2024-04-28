@@ -58,41 +58,11 @@ func generateRandomTable() ([3][3]int, int, int) {
 	return t, xEmpty, yEmpty
 }
 
-func (p *Play) PrintTable() {
-	for _, row := range p.Table {
-		for _, col := range row {
-			fmt.Printf("%d ", col)
-		}
-		fmt.Printf("\n")
-	}
-}
-
 func (p *Play) IsWin() bool {
 	return p.Table == DEFAULT_TABLE
 }
 
-func (p *Play) Quit() string {
-	return p.Keys["quit"]
-}
-
-func (p *Play) Move(k string) error {
-	switch k {
-	case p.Keys["up"]:
-		return p.up()
-	case p.Keys["left"]:
-		return p.left()
-	case p.Keys["down"]:
-		return p.down()
-	case p.Keys["right"]:
-		return p.right()
-	case p.Keys["quit"]:
-		return nil
-	default:
-		return fmt.Errorf("Invalid key. Play again.")
-	}
-}
-
-func (p *Play) up() error {
+func (p *Play) Up() error {
 	if p.EmptyRow == 0 {
 		return fmt.Errorf("can't move up")
 	}
@@ -103,7 +73,7 @@ func (p *Play) up() error {
 	return nil
 }
 
-func (p *Play) down() error {
+func (p *Play) Down() error {
 	if p.EmptyRow == 2 {
 		return fmt.Errorf("can't move down")
 	}
@@ -114,7 +84,7 @@ func (p *Play) down() error {
 	return nil
 }
 
-func (p *Play) left() error {
+func (p *Play) Left() error {
 	if p.EmptyCol == 0 {
 		return fmt.Errorf("can't move left")
 	}
@@ -125,7 +95,7 @@ func (p *Play) left() error {
 	return nil
 }
 
-func (p *Play) right() error {
+func (p *Play) Right() error {
 	if p.EmptyCol == 2 {
 		return fmt.Errorf("can't move right")
 	}
