@@ -31,33 +31,6 @@ func NewPlay() *Play {
 	}
 }
 
-func generateRandomTable() ([3][3]int, int, int) {
-	t := DEFAULT_TABLE
-	s := 3
-	xEmpty := 0
-	yEmpty := 0
-
-	for i, r := range t {
-		for j := range r {
-			x := rand.Intn(s)
-			y := rand.Intn(s)
-			t[i][j], t[x][y] = t[x][y], t[i][j]
-
-			if t[i][j] == 0 {
-				xEmpty = i
-				yEmpty = j
-			}
-
-			if t[x][y] == 0 {
-				xEmpty = x
-				yEmpty = y
-			}
-		}
-	}
-
-	return t, xEmpty, yEmpty
-}
-
 func (p *Play) IsWin() bool {
 	return p.Table == DEFAULT_TABLE
 }
@@ -104,4 +77,31 @@ func (p *Play) Right() error {
 	p.EmptyCol = p.EmptyCol + 1
 
 	return nil
+}
+
+func generateRandomTable() ([3][3]int, int, int) {
+	t := DEFAULT_TABLE
+	s := 3
+	xEmpty := 0
+	yEmpty := 0
+
+	for i, r := range t {
+		for j := range r {
+			x := rand.Intn(s)
+			y := rand.Intn(s)
+			t[i][j], t[x][y] = t[x][y], t[i][j]
+
+			if t[i][j] == 0 {
+				xEmpty = i
+				yEmpty = j
+			}
+
+			if t[x][y] == 0 {
+				xEmpty = x
+				yEmpty = y
+			}
+		}
+	}
+
+	return t, xEmpty, yEmpty
 }
