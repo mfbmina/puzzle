@@ -1,8 +1,8 @@
 package main
 
-import "github.com/mfbmina/puzzle/ui/stdout"
+import "github.com/mfbmina/puzzle/view/ui"
 
 func main() {
-	u := stdout.NewStdout()
+	u := ui.NewUI()
 	u.Render()
 }
