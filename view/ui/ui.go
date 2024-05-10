@@ -106,12 +106,3 @@ func loadImage(name string) *ebiten.Image {
 
 	return ebiten.NewImageFromImage(img)
 }
-
-func (u *UI) printTable() {
-	for _, row := range u.Play.Table {
-		for _, col := range row {
-			fmt.Printf("%d ", col)
-		}
-		fmt.Printf("\n")
-	}
-}

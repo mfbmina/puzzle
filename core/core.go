@@ -6,17 +6,9 @@ import (
 )
 
 var DEFAULT_TABLE = [3][3]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 0}}
-var KEYS = map[string]string{
-	"up":    "w",
-	"left":  "a",
-	"down":  "s",
-	"right": "d",
-	"quit":  "q",
-}
 
 type Play struct {
 	Table    [3][3]int
-	Keys     map[string]string
 	EmptyRow int
 	EmptyCol int
 }
@@ -25,7 +17,6 @@ func NewPlay() *Play {
 	t, x, y := generateRandomTable()
 	return &Play{
 		Table:    t,
-		Keys:     KEYS,
 		EmptyRow: x,
 		EmptyCol: y,
 	}
