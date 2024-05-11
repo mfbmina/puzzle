@@ -1,6 +1,6 @@
 module github.com/mfbmina/puzzle
 
-go 1.21.6
+go 1.22
 
 require (
 	github.com/hajimehoshi/ebiten/v2 v2.7.3
