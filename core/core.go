@@ -94,5 +94,39 @@ func generateRandomTable() ([3][3]int, int, int) {
 		}
 	}
 
+	if !solvablePuzzle(t) {
+		t[0][0], t[0][1] = t[0][1], t[0][0]
+	}
+
 	return t, xEmpty, yEmpty
+}
+
+func solvablePuzzle(t [3][3]int) bool {
+	inversions := 0
+	for i, r := range t {
+		for j, c := range r {
+			if c == 0 {
+				continue
+			}
+			for x := i; x < 3; x++ {
+				for y := 0; y < 3; y++ {
+					if x == i && y <= j {
+						continue
+					}
+					if t[x][y] == 0 {
+						continue
+					}
+					if t[x][y] < c {
+						inversions += 1
+					}
+				}
+			}
+		}
+	}
+
+	if inversions%2 == 0 {
+		return true
+	}
+
+	return false
 }
