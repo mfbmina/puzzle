@@ -19,7 +19,6 @@ var KEYS = map[string]string{
 
 type Stdout struct {
 	Play *core.Play
-	Keys map[string]string
 }
 
 func NewStdout() *Stdout {
