@@ -4,7 +4,7 @@ import (
 	"embed"
 	"fmt"
 	"image"
-	_ "image/jpeg"
+	_ "image/png"
 
 	"log"
 
@@ -29,6 +29,12 @@ func NewUI() *UI {
 // Update is called every tick (1/60 [s] by default).
 func (u *UI) Update() error {
 	// Write your UI's logical update.
+	if inpututil.IsKeyJustPressed(ebiten.KeyQ) {
+		return fmt.Errorf("Quit")
+	}
+	if u.Play.IsWin() {
+		return nil
+	}
 	if inpututil.IsKeyJustPressed(ebiten.KeyDown) {
 		u.Play.Up()
 	}
@@ -40,9 +46,6 @@ func (u *UI) Update() error {
 	}
 	if inpututil.IsKeyJustPressed(ebiten.KeyRight) {
 		u.Play.Left()
-	}
-	if inpututil.IsKeyJustPressed(ebiten.KeyQ) {
-		return fmt.Errorf("Quit")
 	}
 
 	return nil
@@ -69,7 +72,7 @@ func (u *UI) Draw(screen *ebiten.Image) {
 
 	if u.Play.IsWin() {
 		screen.Clear()
-		img := loadImage("congratz")
+		img := loadImage("win")
 		screen.DrawImage(img, nil)
 	}
 }
@@ -91,7 +94,7 @@ func (u *UI) Render() {
 }
 
 func loadImage(name string) *ebiten.Image {
-	fName := fmt.Sprintf("assets/%s.jpg", name)
+	fName := fmt.Sprintf("assets/%s.png", name)
 	// Write your UI's rendering.
 	f, err := assets.Open(fName)
 	if err != nil {
