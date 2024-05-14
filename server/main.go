@@ -9,8 +9,8 @@ func main() {
 	fmt.Println("starting server: http://localhost:8080")
 
 	err := http.ListenAndServe(":8080",
-		http.FileServer(http.Dir("./assets")))
+		http.FileServer(http.Dir("./docs")))
 	if err != nil {
-		panic(fmt.Errorf("Failed to start server: %w", err))
+		panic(fmt.Errorf("failed to start server: %w", err))
 	}
 }

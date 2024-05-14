@@ -54,6 +54,13 @@ func (u *UI) Update() error {
 // Draw draws the UI screen.
 // Draw is called every frame (typically 1/60[s] for 60Hz display).
 func (u *UI) Draw(screen *ebiten.Image) {
+	instructions := loadImage("instructions")
+	opInstructions := &ebiten.DrawImageOptions{}
+	opInstructions.GeoM.Translate(1900, 600)
+	opInstructions.GeoM.Scale(0.5, 0.5)
+
+	screen.DrawImage(instructions, opInstructions)
+
 	for x, row := range u.Play.Table {
 		for y, value := range row {
 			if value == 0 {
@@ -80,13 +87,14 @@ func (u *UI) Draw(screen *ebiten.Image) {
 // Layout takes the outside size (e.g., the window size) and returns the (logical) screen size.
 // If you don't have to adjust the screen size with the outside size, just return a fixed size.
 func (u *UI) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	return 900, 900
+	return 1300, 900
 }
 
 func (u *UI) Render() {
 	// Specify the window size as you like. Here, a doubled size is specified.
-	ebiten.SetWindowSize(900, 900)
+	ebiten.SetWindowSize(1300, 900)
 	ebiten.SetWindowTitle("Puzzle Game")
+	ebiten.SetWindowResizingMode(ebiten.WindowResizingModeEnabled)
 	// Call ebiten.RunUI to start your UI loop.
 	if err := ebiten.RunGame(u); err != nil {
 		log.Fatal(err)

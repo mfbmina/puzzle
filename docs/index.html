@@ -1,13 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8"/>
-		<script src="wasm_exec.js"></script>
-		<script>
-			const go = new Go();
-			WebAssembly.instantiateStreaming(fetch("game.wasm"), go.importObject).then((result) => {
-				go.run(result.instance);
-			});
-		</script>
+		<title>Puzzle</title> 
+		<style type="text/css"> 
+			html { 
+				overflow: auto; 
+			} 
+			
+			html, 
+			body, 
+			div, 
+			iframe { 
+				margin: 0px; 
+				padding: 0px; 
+				height: 100%; 
+				border: none; 
+			} 
+			
+			iframe { 
+				display: block; 
+				width: 100%; 
+				border: none; 
+				overflow-y: auto; 
+				overflow-x: hidden; 
+			} 
+		</style> 
 	</head>
-</html>
+	<body>
+		<iframe src="game.html" width="100vw" height="100vh"></iframe>
+	</body>
+</html> 
