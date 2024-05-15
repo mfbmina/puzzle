@@ -22,3 +22,4 @@ go.work
 
 # WebAssembly
 *.wasm
+wasm_exec.js
