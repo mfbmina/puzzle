@@ -10,7 +10,6 @@ import (
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
 	"github.com/mfbmina/puzzle/core"
 )
@@ -174,9 +173,6 @@ func (u *UI) Draw(screen *ebiten.Image) {
 	opInstructions.GeoM.Scale(0.5, 0.5)
 
 	screen.DrawImage(instructions, opInstructions)
-	if u.pan != nil {
-		ebitenutil.DebugPrint(screen, "Hello, World!")
-	}
 
 	for x, row := range u.Play.Table {
 		for y, value := range row {
