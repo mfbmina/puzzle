@@ -219,7 +219,7 @@ func (u *UI) Render() {
 
 func loadImage(name string) *ebiten.Image {
 	fName := fmt.Sprintf("assets/%s.png", name)
-	// Write your UI's renderinu.
+	// Write your UI's rendering.
 	f, err := assets.Open(fName)
 	if err != nil {
 		panic(err)
