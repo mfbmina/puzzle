@@ -37,10 +37,6 @@ type pan struct {
 	originX, originY int
 }
 
-type tap struct {
-	X, Y int
-}
-
 // UI implements ebiten.UI interface.
 type UI struct {
 	Play *core.Play
@@ -48,7 +44,6 @@ type UI struct {
 	touchIDs []ebiten.TouchID
 	touches  map[ebiten.TouchID]*touch
 	pan      *pan
-	taps     []tap
 
 	currX, currY int
 
@@ -89,7 +84,7 @@ func (u *UI) resolveTouches() {
 
 	u.touchIDs = ebiten.AppendTouchIDs(u.touchIDs[:0])
 
-	// Update the current position and durations of any touches that have
+	// Update the current position of any touches that have
 	// neither begun nor ended in this frame.
 	for _, id := range u.touchIDs {
 		t := u.touches[id]
@@ -114,7 +109,7 @@ func (u *UI) resolveTouches() {
 		}
 	}
 
-	// Copy any active pan gesture's movement to the Game's x and y pan values.
+	// Trigger game moves when any pan touch has ended.
 	if u.pan != nil {
 		if !released {
 			u.currX, u.currY = ebiten.TouchPosition(u.pan.id)

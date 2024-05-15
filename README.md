@@ -14,4 +14,4 @@ To build to WASM just run `make build`:
 - The files you need to serve are inside `docs` folder
 - It is possible to test it locally by running `make start`. A file server will start at port `:8080`
 
-![game image](game.jpeg)
+![Game image](game.jpeg)
